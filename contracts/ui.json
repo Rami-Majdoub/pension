@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "title": "Pension",
+  "description": "Lock your ETH in a safe (the contract) and withdraw them after a period of time (1 minute). ⚠️ Contract deployed on Rinkeby network",
+  "image": {
+  	"url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.dhakatribune.com%2Fuploads%2F2017%2F11%2Fbigstock-pension-fund.jpg&f=1&nofb=1"
+  },
+  "aboutUrl": "https://github.com/Rami-Majdoub/pension",
+  
+  "constants": {
+  	"contractAddress": {
+	  	"default": "",
+	  	"4": "0x4B38c6ADba3FA5902cf80dEE0Ef70374b29B8F11"
+  	}
+  },
+  "panels": [
+  	{
+  		"id": "register",
+  		"title": "Register",
+  		"description": "Lock the withdraw for 1 minute.",
+  		"execs": [
+  			{
+  				"type": "send",
+  				"contract": "Pension",
+  				"method": "register",
+  				"address": "@constant[contractAddress]"
+			}
+		]
+  	},
+  	
+  	{
+  		"id": "deposit",
+  		"title": "Deposit",
+  		"description": "Deposit 1 wei in the safe",
+  		"execs": [
+  			{
+  				"type": "send",
+  				"contract": "Pension",
+  				"method": "deposit",
+  				"transferAmount": "1",
+  				"address": "@constant[contractAddress]"
+			}
+		]
+  	},
+  	
+  	{
+  		"id": "withdraw",
+  		"title": "withdraw",
+  		"description": "Whithdraw 1 wei. You have to wait 30 second to the next withdraw.",
+  		"execs": [
+  			{
+  				"type": "send",
+  				"contract": "Pension",
+  				"method": "withdraw",
+  				"address": "@constant[contractAddress]"
+			}
+		]
+  	},
+  	
+  	{
+  		"id": "getFunds",
+  		"title": "Balance",
+  		"description": "Get the amount of wei you deposited in the safe",
+  		"execs": [
+  			{
+  				"type": "call",
+  				"contract": "Pension",
+  				"method": "getFunds",
+  				"saveResultAsInput": "funds",
+  				"address": "@constant[contractAddress]"
+			}
+		],
+		"outputs": [
+			{
+				"title": "funds",
+				"type": "int",
+				"unit": "wei",
+				"value": "@input[funds]"
+			}
+		]
+  	},
+  	
+  	{
+  		"id": "timeToWithdraw",
+  		"title": "Time To Withdraw",
+  		"description": "Seconds before you can withdraw again.",
+  		"execs": [
+  			{
+  				"type": "call",
+  				"contract": "Pension",
+  				"method": "timeToWithdraw",
+  				"saveResultAsInput": "time",
+  				"address": "@constant[contractAddress]"
+			}
+		],
+		"outputs": [
+			{
+				"title": "time",
+				"type": "int",
+				"unit": "Seconds",
+				"value": "@input[time]"
+			}
+		]
+  	}
+  ]
+}
