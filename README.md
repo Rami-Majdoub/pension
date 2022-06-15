@@ -4,8 +4,15 @@ Lock your ETH in a safe (the contract) and withdraw them after a period of time 
 ⚠️ Contract deployed on Rinkeby network.
 
 
+Shell #1
 ```shell
-ganache
-npx hardhat run scripts/deploy.js --network local
-npm run view
+npm run setup
+ganache # use ganache instead of hardhat see: https://hardhat.org/metamask-issue
+```
+copy a private key and replace the field networks.local.accounts[0] in hardhat.config.js.
+
+Shell #2
+```shell
+npx hardhat run scripts/deploy.js --network local # deploy contract
+npm run watch # start web interface
 ```
