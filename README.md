@@ -1,13 +1,13 @@
 # Pension
 
 Lock your ETH in a safe (the contract) and withdraw them after a period of time (1 minute).
-⚠️ Contract deployed on Rinkeby network.
+⚠️ Contract deployed on Goerli and on polygonMumbai.
 
 
 Shell #1
 ```shell
 npm run setup
-ganache # use ganache instead of hardhat see: https://hardhat.org/metamask-issue
+npx hardhat node # use ganache instead of hardhat see: https://hardhat.org/metamask-issue
 ```
 copy a private key and replace the field networks.local.accounts[0] in hardhat.config.js.
 
