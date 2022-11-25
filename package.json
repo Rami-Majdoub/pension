@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx hardhat test",
-    "setup": "npm install && npm install -g @solui/cli && npm install ganache --global && cp .env.sample .env",
+    "setup": "npm install && npm install -g @solui/cli && cp .env.sample .env",
     "build": "npx hardhat compile && solui publish-folder --spec contracts/ui.json --artifacts artifacts/contracts/Pension.sol/ --folder dist",
     "deploy": "npm run setup && npm run build",
     "watch": "solui view --spec contracts/ui.json --artifacts artifacts/contracts/Pension.sol/"
